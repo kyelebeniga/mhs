@@ -1,6 +1,14 @@
 <?php
     @include 'config.php';   
 
+    session_start();
+
+// If user already logged in, send them to index
+    if ( ! empty( $_SESSION['user'] ) ) {
+        header('Location:index.php?');
+        exit;
+    }
+
     $error = "";
     if(isset($_POST['submit_login'])){
         $username = $_POST['user'];
@@ -10,6 +18,7 @@
         $result = mysqli_query($conn, $mysql);
        
         if(mysqli_num_rows($result)==1){
+            $_SESSION["Authenticated"] = true;
             header('location:index.php');
         }
         else{

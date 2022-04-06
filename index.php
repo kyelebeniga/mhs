@@ -1,5 +1,10 @@
 <?php
     @include 'config.php';
+
+    session_start();
+    if (!isset($_SESSION["Authenticated"])){
+        header("location: login.php");
+    }
 ?>
 
 <!DOCTYPE html>
