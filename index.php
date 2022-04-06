@@ -9,6 +9,7 @@
     <title>MHS | Home</title>
     <link rel="stylesheet" href="css/home.css">
     <script src="https://use.fontawesome.com/b47846fa65.js"></script>
+    <script src="js/custom.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
