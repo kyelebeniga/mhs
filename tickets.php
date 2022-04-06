@@ -1,5 +1,6 @@
 <?php
     @include 'config.php';
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +15,19 @@
     <header>
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="movies.php">Movies</a></li>
-            <li><a href="#" class="current-page">Purchase Tickets</a></li>
+            <li><a href="#" class="current-page">Movies</a></li>
+            <li><a href="#"><?php echo $_SESSION['username']; ?></a>
+                <ul>
+                    <?php
+                        if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
+                            echo "<li><a href=".'#.php'.">Tickets</a></li>";
+                        }else{
+                            echo "<li><a href=".'#.php'.">Cart</a></li>";
+                        }
+                    ?>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </header>
     <section class="main">
@@ -39,7 +51,7 @@
                 <?php while($row = mysqli_fetch_assoc($select)){ ?>
                     <tr>
                         <td><img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt=""></td>
-                        <td><?php echo $row['title']; ?></td>
+                        <td><?php echo $row['title'] . '<br>$' .$row['price']; ?></td>
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
                             <button onclick="openForm()" class="btn"><i class="fa-solid fa-cart-shopping"></i> Purchase</button>

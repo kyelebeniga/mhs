@@ -1,6 +1,7 @@
 <?php
     @include 'config.php';
 
+    session_start();
     if(isset($_POST['add_movie'])){
         $movie_title = $_POST['movie_title'];
         $movie_desc = $_POST['movie_desc'];
@@ -52,7 +53,18 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="#" class="current-page">Movies</a></li>
-            <!--<li><a href="tickets.php">Purchase Tickets</a></li>-->
+            <li><a href="#"><?php echo $_SESSION['username']; ?></a>
+                <ul>
+                    <?php
+                        if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
+                            echo "<li><a href=".'#.php'.">Tickets</a></li>";
+                        }else{
+                            echo "<li><a href=".'#.php'.">Cart</a></li>";
+                        }
+                    ?>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </header>
 
@@ -91,7 +103,7 @@
         <?php
             $select = mysqli_query($conn, "SELECT * FROM movie")
         ?>
-        <div class="class movie-display">
+        <div class="movie-display">
             <table class="movie-table">
                 <thead>
                     <tr>

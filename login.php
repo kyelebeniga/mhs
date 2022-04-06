@@ -14,11 +14,13 @@
         $username = $_POST['user'];
         $password = $_POST['pass'];
 
-        $mysql = "SELECT * FROM registration WHERE username='".$username."'AND password='".$password."' limit 1";
+        $mysql = "SELECT * FROM registration WHERE username='".$username."'AND password='".$password."'";
         $result = mysqli_query($conn, $mysql);
        
         if(mysqli_num_rows($result)==1){
-            $_SESSION["Authenticated"] = true;
+            $row = mysqli_fetch_array($result);
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $row['role'];
             header('location:index.php');
         }
         else{

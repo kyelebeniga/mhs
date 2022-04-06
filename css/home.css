@@ -21,8 +21,9 @@ header{
     justify-content: flex-end;
     align-items: center;
     transition: 0.6s;
-    padding: 25px 70px;
+    padding: 25px 50px;
     z-index: 2;
+    text-align: left;
 }
 header ul{
     position: relative;
@@ -42,6 +43,20 @@ header ul li a{
     letter-spacing: 2px;
     font-weight: 500px;
     transition: 0.6s;
+    line-height: 30px;
+}
+header ul li a:hover{
+    transition: 0.2s;
+    color: #fff;
+}
+header ul ul{
+    position: absolute;
+    top: 30px;
+    display: none;
+}
+header ul li:hover > ul{
+    display: block;
+    transition: 0.8s;
 }
 header .current-page{
     font-weight: 800;

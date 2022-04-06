@@ -2,7 +2,7 @@
     @include 'config.php';
 
     session_start();
-    if (!isset($_SESSION["Authenticated"])){
+    if (!isset($_SESSION['username'])){
         header("location: login.php");
     }
 ?>
@@ -22,15 +22,31 @@
     <header>
         <ul>
             <li><a href="#" class="current-page">Home</a></li>
-            <li><a href="movies.php">Movies</a></li>
-            <!--<li><a href="tickets.php">Purchase Tickets</a></li><-->
+            <?php
+                if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
+                    echo "<li><a href=".'movies.php'.">Movies</a></li>";
+                }else{
+                    echo "<li><a href=".'tickets.php'.">Movies</a></li>";
+                }
+            ?>
+            <li><a href="#"><?php echo $_SESSION['username']; ?></a>
+                <ul>
+                    <?php
+                        if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
+                            echo "<li><a href=".'#.php'.">Tickets</a></li>";
+                        }else{
+                            echo "<li><a href=".'#.php'.">Cart</a></li>";
+                        }
+                    ?>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </header>
     <section class="banner">
         <?php
             $select = mysqli_query($conn, "SELECT image, title FROM movie");
         ?>
-
         <h1>Now Showing</h1>
         <div id="carousel">
             <div class="slick">
