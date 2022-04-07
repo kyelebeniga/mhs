@@ -9,7 +9,7 @@
         $password = $_POST['pass'];
 
         if(empty($username) || empty($password)){
-            echo "<script type='text/javascript'>alert('Please fill out all the blanks');</script>";
+            $error = "Fill out all the blanks";
         }
         else{
             $mysql = "INSERT INTO registration (username, password) VALUES ('$username', '$password')";

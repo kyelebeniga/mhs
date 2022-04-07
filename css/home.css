@@ -10,7 +10,26 @@ body{
     background: #000;
     min-height: 100vh;
 }
-
+@keyframes transitionIn{
+    from{
+        opacity: 0;
+        left: 0;
+    }
+    to{
+        opacity: 1;
+        left: 50%;
+    }
+}
+@keyframes upDown{
+    from{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
 /*-----Navbar-----*/
 header{
     position: fixed;
@@ -91,6 +110,7 @@ header.sticky input[type=text]{
     height: 100vh;
     background: url(../images/bg.jpg);
     background-size: cover;
+    animation: upDown 1s;
 }
 .banner h1{
     margin: 0;
@@ -104,6 +124,7 @@ header.sticky input[type=text]{
 }
 /*-----Now Showing-----*/
 #carousel{
+    animation: transitionIn 2s;
     padding: 60px;
     background: rgb(180, 23, 23);
     position: absolute;

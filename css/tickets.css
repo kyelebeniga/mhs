@@ -8,9 +8,20 @@
 }
 body{
     background: #000;
+    animation: upDown 0.5s;
 }
 a{
     text-decoration: none;
+}
+@keyframes upDown{
+    from{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 
 /*-----Navbar-----*/
@@ -104,18 +115,12 @@ header.sticky ul ul{
 }
 
 /*-----Movie Table-----*/
-.movie-display{
-    position: absolute;
-    margin-top: 80px;
+.movie-table{
+    padding-top: 200px;
+    margin: 0 auto;
     text-align: center;
     width: 80%;
-    top: 105%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.movie-table{
-    width: 100%;
-    margin-bottom: 50px;
+    
 }
 .movie-table thead{
     padding: 20px;

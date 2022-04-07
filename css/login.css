@@ -6,7 +6,14 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+@keyframes intro{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 html{
     height: 100%;
     background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%);
@@ -15,7 +22,8 @@ textarea:focus, input:focus{
     outline: none;
 }
 .login-container{
-    border-radius: 4px  ;
+    animation: intro 2s;
+    border-radius: 4px;
     background-color: rgb(255, 255, 255);
     height: 500px;
     width: 350px;
@@ -23,6 +31,7 @@ textarea:focus, input:focus{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
 }
 h1{
     text-align: center;
