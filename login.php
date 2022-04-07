@@ -14,12 +14,12 @@
         $username = $_POST['user'];
         $password = $_POST['pass'];
 
-        $mysql = "SELECT * FROM registration WHERE username='".$username."'AND password='".$password."'";
+        $mysql = "SELECT * FROM registration WHERE username='".$username."'AND BINARY password='".$password."'";
         $result = mysqli_query($conn, $mysql);
        
         if(mysqli_num_rows($result)==1){
             $row = mysqli_fetch_array($result);
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['role'];
             header('location:index.php');
         }
@@ -45,7 +45,7 @@
                 <input type="password" id="pass" name="pass" placeholder="Password">
                 <div><span class="error"><?php echo $error; ?></span></div>
                 <input type="submit" class="btn" name="submit_login" value="Login">
-                <p>Not a member? <a href="#">Signup now</a></p>
+                <p>Not a member? <a href="signup.php">Signup now</a></p>
             </form>
         </div>
     </section>  

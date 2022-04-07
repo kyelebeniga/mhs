@@ -20,11 +20,15 @@
             $upload = mysqli_query($conn, $update_data);
             if($upload){
                 move_uploaded_file($movie_image_tmp_name, $movie_image_folder);
-                header('location:movies.php');
-                $message = 'Entry updated!';
+                echo "<script>
+                    alert('Successfully updated movie!');
+                    window.open('movies.php','_self');
+                </script>";
             }
             else{
-                $message = 'Error: Could not update movie.';
+                echo "<script>
+                    alert('Error: Could not update.');
+                </script>";
             }
         }
     };
