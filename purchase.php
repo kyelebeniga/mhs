@@ -1,7 +1,7 @@
 <?php
     @include 'config.php';
 
-    $id = $_GET['movieid'];
+    $movieid = $_GET['movieid'];
 
     session_start();
     if(isset($_POST['purchase'])){
@@ -14,7 +14,7 @@
             echo "<script type='text/javascript'>alert('Please fill out all the blanks!');</script>";
         }
         else{
-            $insert = "INSERT INTO purchases(movie, username, fname, lname, seat) VALUES('$id', '$username', '$first_name', '$last_name', '$seat');";
+            $insert = "INSERT INTO purchases(movie, username, fname, lname, seat) VALUES('$movieid', '$username', '$first_name', '$last_name', '$seat');";
             $upload = mysqli_multi_query($conn, $insert);
             if($upload){
                 echo "<script>
@@ -47,11 +47,18 @@
                 <label for="seats">Seat:</label>
                 <select name="seats" id="seats">
                     <option value=""></option>
-                    <script>
-                        for(var i=1;i<=50;i++){
-                            document.write("<option value="+i+">"+i+"</option>");
-                        }   
-                    </script>
+                    <?php
+                        $tbl = array();
+                        $reserved = mysqli_query($conn, "SELECT seat FROM purchases WHERE movie='$movieid'");
+                        while($res = mysqli_fetch_assoc($reserved)){
+                            $tbl[] = $res['seat'];
+                        };
+                        for($i=1;$i<=50;$i++){
+                            if(!in_array($i, $tbl)){
+                                echo "<option value='$i'>$i</option>";
+                            }
+                        }
+                    ?>
                 </select>
                 <div class="buttons">
                     <input type="submit" class="btn" name="purchase" value="Purchase">
@@ -61,7 +68,7 @@
         </div>
         <div class="movie-info">
             <?php
-                $select = mysqli_query($conn, "SELECT * FROM movie WHERE id='$id'");
+                $select = mysqli_query($conn, "SELECT * FROM movie WHERE id='$movieid'");
                 $row = mysqli_fetch_assoc($select);
             ?>
             <img src="uploaded_img/<?php echo $row['image']; ?>" height="200" width="133" alt="">

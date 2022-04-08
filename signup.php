@@ -45,6 +45,7 @@
                 <input type="password" id="pass" name="pass" placeholder="Password">
                 <div><span class="error"><?php echo $error; ?></span></div>
                 <input type="submit" class="btn" name="submit_login" value="Signup">
+                <p><a href="login.php">Cancel</a></p>
             </form>
         </div>
     </section>  
