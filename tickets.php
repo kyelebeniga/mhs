@@ -54,7 +54,7 @@
                         <td><?php echo $row['title'] . '<br>$' .$row['price']; ?></td>
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
-                            <button onclick="openForm()" class="btn"><i class="fa-solid fa-cart-shopping"></i> Purchase</button>
+                            <a href="purchase.php?movieid=<?php echo $row['id']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i>Purchase</a>
                         </td>
                     <tr>
                 <?php }; ?>

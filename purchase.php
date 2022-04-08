@@ -1,5 +1,32 @@
 <?php
-    @include 'config.php'
+    @include 'config.php';
+
+    $id = $_GET['movieid'];
+
+    session_start();
+    if(isset($_POST['purchase'])){
+        $username = $_SESSION['username'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $seat = $_POST['seats'];
+
+        if(empty($first_name) || empty($last_name) || empty($seat)){
+            echo "<script type='text/javascript'>alert('Please fill out all the blanks!');</script>";
+        }
+        else{
+            $insert = "INSERT INTO purchases(movie, username, fname, lname, seat) VALUES('$id', '$username', '$first_name', '$last_name', '$seat');";
+            $upload = mysqli_multi_query($conn, $insert);
+            if($upload){
+                echo "<script>
+                    alert('Ticket purchased!');
+                    window.open('tickets.php','_self');
+                </script>";
+            }
+            else{
+                echo "<script type='text/javascript'>alert('Error!');</script>";
+            }
+        }
+    };
 ?>
 
 <!DOCTYPE html>
@@ -15,13 +42,16 @@
         <div class="checkout">
             <h1>Checkout</h1>
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="form-container">
-                <p name="user">Name: Kyele</p>
+                <input type="text" placeholder="First Name" name="first_name" class="text-form">
+                <input type="text" placeholder="Last Name" name="last_name" class="text-form">
                 <label for="seats">Seat:</label>
                 <select name="seats" id="seats">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    <option value=""></option>
+                    <script>
+                        for(var i=1;i<=50;i++){
+                            document.write("<option value="+i+">"+i+"</option>");
+                        }   
+                    </script>
                 </select>
                 <div class="buttons">
                     <input type="submit" class="btn" name="purchase" value="Purchase">
@@ -30,14 +60,13 @@
             </form>
         </div>
         <div class="movie-info">
-            <img src="uploaded_img/batman.jpg" height="200" width="133" alt="">
-            <p class="title">The Batman</p>
-            <p class="desc">Batman ventures into Gotham City's underworld when a 
-                sadistic killer leaves behind a trail of cryptic clues. As the evidence begins 
-                to lead closer to home and the scale of the perpetrator's plans become clear, 
-                he must forge new relationships, unmask the culprit and bring justice to the abuse 
-                of power and corruption that has long plagued the metropolis.
-            </p>
+            <?php
+                $select = mysqli_query($conn, "SELECT * FROM movie WHERE id='$id'");
+                $row = mysqli_fetch_assoc($select);
+            ?>
+            <img src="uploaded_img/<?php echo $row['image']; ?>" height="200" width="133" alt="">
+            <p class="title"><?php echo $row['title']; ?></p>
+            <p class="desc"><?php echo $row['description']; ?></p>
         </div>
     </div>
 </body>
