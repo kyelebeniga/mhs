@@ -47,10 +47,10 @@
                 <label for="seats">Seat:</label>
                 <select name="seats" id="seats">
                     <option value=""></option>
-                    <?php
+                    <?php 
                         $tbl = array();
-                        $reserved = mysqli_query($conn, "SELECT seat FROM purchases WHERE movie='$movieid'");
-                        while($res = mysqli_fetch_assoc($reserved)){
+                        $reserved = mysqli_query($conn, "SELECT seat FROM purchases WHERE movieid='$movieid'");
+                        while($res = mysqli_fetch_assoc($reserved)){  //Makes already reserved seats hidden from dropdown menu
                             $tbl[] = $res['seat'];
                         };
                         for($i=1;$i<=50;$i++){
@@ -68,7 +68,7 @@
         </div>
         <div class="movie-info">
             <?php
-                $select = mysqli_query($conn, "SELECT * FROM movie WHERE id='$movieid'");
+                $select = mysqli_query($conn, "SELECT * FROM movie WHERE movieid='$movieid'");
                 $row = mysqli_fetch_assoc($select);
             ?>
             <img src="uploaded_img/<?php echo $row['image']; ?>" height="200" width="133" alt="">

@@ -2,20 +2,18 @@
     @include 'config.php';
     session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MHS | Purchase Tickets</title>
-    <link rel="stylesheet" href="css/tickets.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>MHS | History</title>
+    <link rel="stylesheet" href="css/history.css">
 </head>
 <body>
     <header>
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="#" class="current-page">Movies</a></li>
+            <li><a href="tickets.php">Movies</a></li>
             <li><a href="#"><?php echo $_SESSION['username']; ?></a>
                 <ul>
                     <?php
@@ -30,39 +28,34 @@
             </li>
         </ul>
     </header>
-    <section class="main">
-        <!--Movie Table-->
-        <section class="movie-list">
-        <?php
-            $select = mysqli_query($conn, "SELECT * FROM movie")
-        ?>
+    <div class="main-contianer">
         <div class="movie-display">
-        <h1>Purchase Tickets</h1>
+        <h1>History</h1>
             <table class="movie-table">
                 <thead>
                     <tr>
-                        <th>Poster</th>
+                        <th class="table-poster">Poster</th>
                         <th>Title</th>
                         <th class="table-desc">Description</th>
-                        <th colspan="2"></th>
+                        <th>Seat</th>
                     </tr>
                 </thead>
                 <!--Populate Movie Table-->
+                <?php
+                    $username = $_SESSION['username'];
+                    $select = mysqli_query($conn, "SELECT * FROM movie, purchases WHERE movie.movieid=purchases.movieid AND purchases.username='$username'");
+                ?>
                 <?php while($row = mysqli_fetch_assoc($select)){ ?>
                     <tr>
                         <td><img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt=""></td>
                         <td><?php echo $row['title'] . '<br>$' .$row['price']; ?></td>
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
-                        <td>
-                            <a href="purchase.php?movieid=<?php echo $row['movieid']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i>Purchase</a>
-                        </td>
+                        <td><?php echo $row['seat']?></td>
                     <tr>
                 <?php }; ?>
             </table>
         </div>
-    </section>
-
-    <!--Navbar JavaScript-->
+    </div>
     <script>
         window.addEventListener("scroll", function(){
             var header = document.querySelector("header");

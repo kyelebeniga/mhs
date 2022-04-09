@@ -1,6 +1,6 @@
 <?php
     @include 'config.php';
-
+    //sends user to login page if they haven't logged in yet
     session_start();
     if (!isset($_SESSION['username'])){
         header("location: login.php");
@@ -35,7 +35,7 @@
                         if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
                             echo "<li><a href=".'#.php'.">Tickets</a></li>";
                         }else{
-                            echo "<li><a href=".'#.php'.">Cart</a></li>";
+                            echo "<li><a href=".'history.php'.">Cart</a></li>";
                         }
                     ?>
                     <li><a href="logout.php">Logout</a></li>

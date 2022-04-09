@@ -3,7 +3,7 @@
 
     session_start();
 
-// If user already logged in, send them to index
+// If user already logged in, send them to home page
     if ( ! empty( $_SESSION['user'] ) ) {
         header('Location:index.php?');
         exit;
