@@ -29,7 +29,7 @@
     //Deletes movie entry
     if(isset($_GET['delete'])){
         $id = $_GET['delete'];
-        mysqli_query($conn, "DELETE FROM movie WHERE id = $id");
+        mysqli_query($conn, "DELETE FROM movie WHERE movieid = $id");
         echo "<script type='text/javascript'>alert('Movie entry deleted!');</script>";
     }
 ?>
@@ -120,8 +120,8 @@
                         <td><?php echo $row['title'] . '<br>$' .$row['price']; ?></td>
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
-                            <a href="movie_update.php?edit=<?php echo $row['id']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
-                            <a href="movies.php?delete=<?php echo $row['id']; ?>" class="btn"><i class="fas fa-trash"></i>Delete</a>
+                            <a href="movie_update.php?edit=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
+                            <a href="movies.php?delete=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-trash"></i>Delete</a>
                         </td>
                     <tr>
                 <?php }; ?>
