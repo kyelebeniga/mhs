@@ -16,13 +16,7 @@
             <li><a href="tickets.php">Movies</a></li>
             <li><a href="#"><?php echo $_SESSION['username']; ?></a>
                 <ul>
-                    <?php
-                        if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
-                            echo "<li><a href=".'#.php'.">Tickets</a></li>";
-                        }else{
-                            echo "<li><a href=".'history.php'.">History</a></li>";
-                        }
-                    ?>
+                    <li><a href="#">History</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </li>

@@ -55,13 +55,7 @@
             <li><a href="#" class="current-page">Movies</a></li>
             <li><a href="#"><?php echo $_SESSION['username']; ?></a>
                 <ul>
-                    <?php
-                        if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
-                            echo "<li><a href=".'#.php'.">Tickets</a></li>";
-                        }else{
-                            echo "<li><a href=".'#.php'.">Cart</a></li>";
-                        }
-                    ?>
+                    <li><a href="adminhistory.php">Purchases</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </li>

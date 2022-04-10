@@ -14,7 +14,7 @@
             echo "<script type='text/javascript'>alert('Please fill out all the blanks!');</script>";
         }
         else{
-            $insert = "INSERT INTO purchases(movie, username, fname, lname, seat) VALUES('$movieid', '$username', '$first_name', '$last_name', '$seat');";
+            $insert = "INSERT INTO purchases(movieid, username, fname, lname, seat) VALUES('$movieid', '$username', '$first_name', '$last_name', '$seat');";
             $upload = mysqli_multi_query($conn, $insert);
             if($upload){
                 echo "<script>

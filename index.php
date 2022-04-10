@@ -33,9 +33,9 @@
                 <ul>
                     <?php
                         if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
-                            echo "<li><a href=".'#.php'.">Tickets</a></li>";
+                            echo "<li><a href=".'adminhistory.php'.">Purchases</a></li>";
                         }else{
-                            echo "<li><a href=".'history.php'.">Cart</a></li>";
+                            echo "<li><a href=".'history.php'.">History</a></li>";
                         }
                     ?>
                     <li><a href="logout.php">Logout</a></li>
