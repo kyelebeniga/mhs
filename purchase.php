@@ -3,6 +3,9 @@
 
     $movieid = $_GET['movieid'];
 
+    $select = mysqli_query($conn, "SELECT * FROM movie WHERE movieid='$movieid'");
+    $row = mysqli_fetch_assoc($select);
+
     session_start();
     if(isset($_POST['purchase'])){
         $username = $_SESSION['username'];
@@ -32,6 +35,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta charset="UTF-8">
     <title>MHS | Purchase</title>
     <link rel="stylesheet" href="css/purchase.css">
@@ -65,12 +69,9 @@
                     <a href="tickets.php" class="btn-cancel">Cancel</a>
                 </div>
             </form>
+            <p class="amount">Price: $<?php echo $row['price']?></p>
         </div>
         <div class="movie-info">
-            <?php
-                $select = mysqli_query($conn, "SELECT * FROM movie WHERE movieid='$movieid'");
-                $row = mysqli_fetch_assoc($select);
-            ?>
             <img src="uploaded_img/<?php echo $row['image']; ?>" height="200" width="133" alt="">
             <p class="title"><?php echo $row['title']; ?></p>
             <p class="desc"><?php echo $row['description']; ?></p>

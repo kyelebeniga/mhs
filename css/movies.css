@@ -222,7 +222,7 @@ header.sticky ul ul{
     border-color: white;
 }
 .table-desc{
-    width: 40%;
+    width: 50%;
 }
 .table-desc-content{
     font-size: 16px !important;
@@ -282,4 +282,31 @@ header.sticky ul ul{
     cursor: pointer;
     width: 15%;
     font-size: 16px;
+}
+
+@media (max-width: 480px){
+    .banner h1{
+        font-size: 46px;
+        top: 25%;
+        animation: 0;
+    }
+    .open-button{
+        width: 60%;
+        top: 40%;
+        font-size: 24px;
+    }
+    .movie-display{
+        width: 90%;
+    }
+    .movie-table{
+        display: block;
+        overflow-x: auto;
+    }
+    .movie-table th{
+        font-size: 16px;
+        padding: 5px;
+    }
+    .movie-table .poster{
+        width: 10px;
+    }
 }

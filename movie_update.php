@@ -16,7 +16,7 @@
         }
         else{
             $movie_desc = str_replace("'", "\'", $movie_desc);
-            $update_data = "UPDATE movie SET title='$movie_title', description='$movie_desc', price='$movie_price', image='$movie_image' WHERE id = '$id'";
+            $update_data = "UPDATE movie SET title='$movie_title', description='$movie_desc', price='$movie_price', image='$movie_image' WHERE movieid = '$id'";
             $upload = mysqli_query($conn, $update_data);
             if($upload){
                 move_uploaded_file($movie_image_tmp_name, $movie_image_folder);
@@ -37,6 +37,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/movies.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -49,7 +50,7 @@
     ?>
     <div class="container">
         <?php
-            $select = mysqli_query($conn, "SELECT * FROM movie WHERE id = '$id'");
+            $select = mysqli_query($conn, "SELECT * FROM movie WHERE movieid = '$id'");
             while($row = mysqli_fetch_assoc($select)){
 
         ?>

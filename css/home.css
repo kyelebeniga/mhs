@@ -75,6 +75,7 @@ header ul ul{
 }
 header ul li:hover > ul{
     display: block;
+    animation: upDown 0.1s;
     transition: 0.8s;
 }
 header .current-page{
@@ -149,4 +150,13 @@ header.sticky input[type=text]{
 .now-showing p{
     padding-top: 15px;
     font-size: 24px;
+}
+@media (max-width: 480px){
+    #carousel{
+        height: 60%;
+        width: 88%;
+    }
+    .banner h1{
+        font-size: 46px;
+    }
 }
