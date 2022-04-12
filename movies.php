@@ -4,18 +4,22 @@
     session_start();
     if(isset($_POST['add_movie'])){
         $movie_title = $_POST['movie_title'];
+        $movie_year = $_POST['movie_year'];
+        $movie_rating = $_POST['movie_rating'];
         $movie_desc = $_POST['movie_desc'];
+        $movie_duration = $_POST['movie_duration'];
         $movie_price = $_POST['movie_price'];
         $movie_image = $_FILES['movie_image']['name'];
         $movie_image_tmp_name = $_FILES['movie_image']['tmp_name'];
         $movie_image_folder = 'uploaded_img/'.$movie_image;
 
-        if(empty($movie_title) || empty($movie_desc) || empty($movie_image)){
+        if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration)){
             $message = 'Please fill out all the blanks.';
         }
         else{
             $movie_desc = str_replace("'", "\'", $movie_desc); //Sanitizes input for movie description
-            $insert = "INSERT INTO movie(title, description, price, image) VALUES('$movie_title', '$movie_desc', '$movie_price', '$movie_image');";
+            $insert = "INSERT INTO movie(title, year, rating, description, duration, price, image) VALUES('$movie_title', '$movie_year', '$movie_rating', 
+                                                                                                    '$movie_desc', '$movie_duration', '$movie_price', '$movie_image');";
             $upload = mysqli_multi_query($conn, $insert);
             if($upload){
                 move_uploaded_file($movie_image_tmp_name, $movie_image_folder);
@@ -71,7 +75,10 @@
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data" class="form-container">
                     <h3>Add movie</h3>
                     <input type="text" placeholder="Movie title" name="movie_title" class="box">
+                    <input type="text" placeholder="Year" name="movie_year" class="box">
+                    <input type="text" placeholder="Maturity Rating" name="movie_rating" class="box">
                     <input type="text" placeholder="Description" name="movie_desc" class="box">
+                    <input type="text" placeholder="Duration" name="movie_duration" class="box">
                     <input type="text" placeholder="Price" name="movie_price" class="box">
 
                     <label for="image-file" class="image-label">Upload Image</label>
