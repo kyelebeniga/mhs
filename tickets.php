@@ -1,6 +1,8 @@
 <?php
     @include 'config.php';
     session_start();
+
+    $select = mysqli_query($conn, "SELECT * FROM movie");
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +16,7 @@
 </head>
 <body>
     <header>
+        <a href="#" class="logo">MHS</a>
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="#" class="current-page">Movies</a></li>
@@ -25,37 +28,19 @@
             </li>
         </ul>
     </header>
-    <section class="main">
-        <!--Movie Table-->
-        <section class="movie-list">
-        <?php
-            $select = mysqli_query($conn, "SELECT * FROM movie")
-        ?>
-        <div class="movie-display">
-        <h1>Purchase Tickets</h1>
-            <table class="movie-table">
-                <thead>
-                    <tr>
-                        <th>Poster</th>
-                        <th>Title</th>
-                        <th class="table-desc">Description</th>
-                        <th colspan="2"></th>
-                    </tr>
-                </thead>
-                <!--Populate Movie Table-->
-                <?php while($row = mysqli_fetch_assoc($select)){ ?>
-                    <tr>
-                        <td><a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt=""></a></td>
-                        <td><a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><?php echo $row['title'] . '<br>$' .$row['price']; ?></a></td>
-                        <td class="table-desc-content"><?php echo $row['description']; ?></td>
-                        <td>
-                            <a href="purchase.php?movieid=<?php echo $row['movieid']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i>Purchase</a>
-                        </td>
-                    <tr>
-                <?php }; ?>
-            </table>
+    <div class=content>
+        <h1>Now Showing</h1>
+        <div class="column">
+            <?php while($row = mysqli_fetch_assoc($select)){ ?>
+                <div class="column">
+                    <a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>">
+                        <img src="uploaded_img/<?php echo $row['image']; ?>">
+                        <p><?php echo $row['title']; ?></p>
+                    </a>
+                </div>
+            <?php }; ?>
         </div>
-    </section>
+    </div>
 
     <!--Navbar JavaScript-->
     <script>
