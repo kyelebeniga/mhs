@@ -137,19 +137,20 @@ header.sticky ul ul{
 }
 .column > *{
     margin: 25px auto;
+    margin-bottom: 5px;
     text-align: center;
-    flex: 0 1 200px;
+    flex: 0 1 250px;
     border-radius: 10px;
     overflow: hidden;
 }
 .column img{
-    height: 300px;
-    width: 200px;
+    height: 375px;
+    width: 250px;
     transition: 0.2s;
 }
 .column a{
-    height: 300px;
-    width: 200px;
+    height: 375px;
+    width: 250px;
     font-size: 18px;
     font-weight: 700;
 }

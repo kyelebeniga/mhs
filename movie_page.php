@@ -57,7 +57,8 @@
             <div class="movie-text">
                 <h1><?php echo $row['title']?></h1>
                 <p><?php echo $row['rating'] . ' | ' .$row['year'] . ' | ' . $row['duration']; ?></p>
-                <a href="purchase.php?movieid=<?php echo $row['movieid']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+                <a href="purchase.php?movieid=<?php echo $row['movieid']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i> Purchase </a>
+                <p class="price">$<?php echo $row['price'];?></p>
             </div>
             <div class="movie-desc">
                 <h1>Synopsis: </h1>

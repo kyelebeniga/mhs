@@ -173,6 +173,15 @@ header.sticky input[type=text]{
     text-align: center;
     text-decoration: none;
 }
+.movie-text .btn:hover{
+    opacity: 0.9;
+}
+.movie-text .price{
+    position: absolute;
+    top: 63%;
+    left: 32%;
+    font-size: 26px;
+}
 .movie-desc{
     position: absolute;
     right: 12%;
