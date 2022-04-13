@@ -45,8 +45,8 @@
                 <!--Populate Movie Table-->
                 <?php while($row = mysqli_fetch_assoc($select)){ ?>
                     <tr>
-                        <td><img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt=""></td>
-                        <td><?php echo $row['title'] . '<br>$' .$row['price']; ?></td>
+                        <td><a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt=""></a></td>
+                        <td><a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><?php echo $row['title'] . '<br>$' .$row['price']; ?></a></td>
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
                             <a href="purchase.php?movieid=<?php echo $row['movieid']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i>Purchase</a>

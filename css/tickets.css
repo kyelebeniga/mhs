@@ -8,7 +8,6 @@
 }
 body{
     background-color: #080c1c;
-    animation: upDown 0.5s;
 }
 a{
     text-decoration: none;
@@ -102,6 +101,7 @@ header.sticky ul ul{
     width: 100%;
     height: 100vh;
     background-size: cover;
+    animation: upDown 0.8s;
 }
 
 /*-----Movie Table-----*/
@@ -116,6 +116,10 @@ header.sticky ul ul{
     text-align: center;
     width: 80%;
     background-color: #222222;
+}
+.movie-table a:visited {
+    color: inherit;
+    text-decoration: none;
 }
 .movie-table thead{
     padding: 20px;

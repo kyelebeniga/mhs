@@ -54,11 +54,11 @@
                     <?php 
                         $tbl = array();
                         $reserved = mysqli_query($conn, "SELECT seat FROM purchases WHERE movieid='$movieid'");
-                        while($res = mysqli_fetch_assoc($reserved)){  //Makes already reserved seats hidden from dropdown menu
+                        while($res = mysqli_fetch_assoc($reserved)){  
                             $tbl[] = $res['seat'];
                         };
                         for($i=1;$i<=50;$i++){
-                            if(!in_array($i, $tbl)){
+                            if(!in_array($i, $tbl)){  //Makes already reserved seats hidden from dropdown menu
                                 echo "<option value='$i'>$i</option>";
                             }
                         }

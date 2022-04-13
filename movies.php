@@ -12,17 +12,21 @@
         $movie_image = $_FILES['movie_image']['name'];
         $movie_image_tmp_name = $_FILES['movie_image']['tmp_name'];
         $movie_image_folder = 'uploaded_img/'.$movie_image;
+        $movie_banner = $_FILES['movie_banner']['name'];
+        $movie_banner_tmp_name = $_FILES['movie_banner']['tmp_name'];
+        $movie_banner_folder = 'uploaded_img/banner/'.$movie_banner;
 
         if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration)){
             $message = 'Please fill out all the blanks.';
         }
         else{
             $movie_desc = str_replace("'", "\'", $movie_desc); //Sanitizes input for movie description
-            $insert = "INSERT INTO movie(title, year, rating, description, duration, price, image) VALUES('$movie_title', '$movie_year', '$movie_rating', 
-                                                                                                    '$movie_desc', '$movie_duration', '$movie_price', '$movie_image');";
+            $insert = "INSERT INTO movie(title, year, rating, description, duration, price, image, banner) VALUES('$movie_title', '$movie_year', '$movie_rating', 
+                        '$movie_desc', '$movie_duration', '$movie_price', '$movie_image', '$movie_banner');";
             $upload = mysqli_multi_query($conn, $insert);
             if($upload){
                 move_uploaded_file($movie_image_tmp_name, $movie_image_folder);
+                move_uploaded_file($movie_banner_tmp_name, $movie_banner_folder);
                 $message = 'New movie added!';
             }
             else{
@@ -55,6 +59,7 @@
         }
     ?>
     <header>
+        <a href="#" class="logo">MHS</a>
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="#" class="current-page">Movies</a></li>
@@ -81,13 +86,23 @@
                     <input type="text" placeholder="Duration" name="movie_duration" class="box">
                     <input type="text" placeholder="Price" name="movie_price" class="box">
 
-                    <label for="image-file" class="image-label">Upload Image</label>
+                    <label for="image-file" class="image-label">Upload Poster</label>
                     <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_image" id="image-file">
                     <script>
-                        //Replaces "Upload Image" with the file name of the user's uploaded image
+                        //Replaces "Upload Poster" with the file name of the user's uploaded image
                         $('#image-file').change(function() {
                             var i = $(this).prev('label').clone();
                             var file = $('#image-file')[0].files[0].name;
+                            $(this).prev('label').text(file);
+                        });
+                    </script>
+
+                    <label for="image-banner" class="image-label">Upload Banner (1920x550)</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_banner" id="image-banner">
+                    <script>
+                        $('#image-banner').change(function() {
+                            var i = $(this).prev('label').clone();
+                            var file = $('#image-banner')[0].files[0].name;
                             $(this).prev('label').text(file);
                         });
                     </script>
@@ -118,8 +133,10 @@
                 <!--Populate Movie Table-->
                 <?php while($row = mysqli_fetch_assoc($select)){ ?>
                     <tr>
-                        <td><img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt=""></td>
-                        <td><?php echo $row['title'] . '<br>$' .$row['price']; ?></td>
+                        <td>
+                            <a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt=""></a>
+                        </td>
+                        <td><a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><?php echo $row['title'] . '<br>$' .$row['price']; ?></a></td>
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
                             <a href="movie_update.php?edit=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>

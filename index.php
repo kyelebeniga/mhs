@@ -21,6 +21,7 @@
 </head>
 <body>
     <header>
+        <a href="#" class="logo">MHS</a>
         <ul>
             <li><a href="#" class="current-page">Home</a></li>
             <?php
@@ -46,14 +47,14 @@
     </header>
     <section class="banner">
         <?php
-            $select = mysqli_query($conn, "SELECT image, title FROM movie");
+            $select = mysqli_query($conn, "SELECT movieid, image, title FROM movie");
         ?>
         <h1>Now Showing</h1>
         <div id="carousel">
             <div class="slick">
                 <?php while($row = mysqli_fetch_assoc($select)){ ?>
                     <div class="now-showing">
-                        <img src="uploaded_img/<?php echo $row['image']; ?>" height="400" width="266" alt="">
+                        <a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><img src="uploaded_img/<?php echo $row['image']; ?>" width="100%"></a>
                         <p><?php echo $row['title']; ?></p>
                     </div>
                 <?php }; ?>
