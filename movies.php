@@ -106,7 +106,6 @@
                             $(this).prev('label').text(file);
                         });
                     </script>
-
                     <input type="submit" class="btn" name="add_movie" value="Submit">
                     <input type="button" class="btn-cancel" onclick="closeForm()" value="Cancel">
                 </form>

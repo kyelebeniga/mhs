@@ -30,6 +30,16 @@ body{
         opacity: 1;
     }
 }
+@keyframes dropDown{
+    from{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
 
 /*-----Navbar-----*/
 header{
@@ -86,6 +96,7 @@ header ul ul{
 header ul li:hover > ul{
     display: block;
     transition: 0.8s;
+    animation: dropDown 0.1s;
 }
 header .current-page{
     font-weight: 800;

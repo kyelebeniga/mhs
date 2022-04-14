@@ -31,7 +31,7 @@
                 }
             ?>
             <li><a href="#"><?php echo $_SESSION['username']; ?></a>
-                <ul>
+                <ul class="drop-down">
                     <?php
                         if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
                             echo "<li><a href=".'adminhistory.php'.">Purchases</a></li>";

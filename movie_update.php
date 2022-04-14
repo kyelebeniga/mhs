@@ -13,6 +13,9 @@
         $movie_image = $_FILES['movie_image']['name'];
         $movie_image_tmp_name = $_FILES['movie_image']['tmp_name'];
         $movie_image_folder = 'uploaded_img/'.$movie_image;
+        $movie_banner = $_FILES['movie_banner']['name'];
+        $movie_banner_tmp_name = $_FILES['movie_banner']['tmp_name'];
+        $movie_banner_folder = 'uploaded_img/banner/'.$movie_banner;
 
         if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration)){
             $message = 'Please fill out all the blanks.';
@@ -20,7 +23,7 @@
         else{
             $movie_desc = str_replace("'", "\'", $movie_desc);
             $update_data = "UPDATE movie SET title='$movie_title', year='$movie_year', rating='$movie_rating', description='$movie_desc', 
-                                             duration='$movie_duration', price='$movie_price', image='$movie_image' WHERE movieid = '$id'";
+                            duration='$movie_duration', price='$movie_price', image='$movie_image', banner='$movie_banner' WHERE movieid = '$id'";
             $upload = mysqli_query($conn, $update_data);
             if($upload){
                 move_uploaded_file($movie_image_tmp_name, $movie_image_folder);
@@ -77,6 +80,16 @@
                         $(this).prev('label').text(file);
                     });
                 </script>
+
+                <label for="image-banner" class="image-label">Upload Banner (1920x550)</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_banner" id="image-banner">
+                    <script>
+                        $('#image-banner').change(function() {
+                            var i = $(this).prev('label').clone();
+                            var file = $('#image-banner')[0].files[0].name;
+                            $(this).prev('label').text(file);
+                        });
+                    </script>
 
                 <input type="submit" class="btn" name="update_movie" value="Update">
                 <a href="movies.php" class="btn-cancel">Cancel</a>

@@ -77,6 +77,7 @@ header ul ul{
 }
 header ul li:hover > ul{
     display: block;
+    animation: upDown 0.1s;
     transition: 0.8s;
 }
 header .current-page{

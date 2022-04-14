@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+@keyframes upDown{
+    from{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -53,6 +64,7 @@ header ul ul{
 }
 header ul li:hover > ul{
     display: block;
+    animation: upDown 0.1s;
     transition: 0.8s;
 }
 header .current-page{
