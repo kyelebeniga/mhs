@@ -16,7 +16,7 @@
         $movie_banner_tmp_name = $_FILES['movie_banner']['tmp_name'];
         $movie_banner_folder = 'uploaded_img/banner/'.$movie_banner;
 
-        if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration)){
+        if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration) || empty($movie_banner)){
             $message = 'Please fill out all the blanks.';
         }
         else{
@@ -138,8 +138,10 @@
                         <td><a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><?php echo $row['title'] . '<br>$' .$row['price']; ?></a></td>
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
-                            <a href="movie_update.php?edit=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
-                            <a href="movies.php?delete=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-trash"></i>Delete</a>
+                            <div class="buttons">
+                                <a href="movie_update.php?edit=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
+                                <a href="movies.php?delete=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-trash"></i>Delete</a>
+                            </div>
                         </td>
                     <tr>
                 <?php }; ?>

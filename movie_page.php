@@ -51,19 +51,12 @@
             <div class="banner-overlay"></div>
         </div>
         <div class="movie-content">
-            <div class="movie-poster">
-                <img src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt="">
-            </div>
-            <div class="movie-text">
-                <h1><?php echo $row['title']?></h1>
-                <p><?php echo $row['rating'] . ' | ' .$row['year'] . ' | ' . $row['duration']; ?></p>
-                <a href="purchase.php?movieid=<?php echo $row['movieid']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i> Purchase </a>
-                <p class="price">$<?php echo $row['price'];?></p>
-            </div>
-            <div class="movie-desc">
-                <h1>Synopsis: </h1>
-                <p><?php echo $row['description']; ?></p>
-            </div>
+            <img class="movie-poster" src="uploaded_img/<?php echo $row['image']; ?>" height="300" width="200" alt="">
+            <h1><?php echo $row['title']?></h1>
+            <p><?php echo $row['rating'] . ' | ' .$row['year'] . ' | ' . $row['duration']; ?></p>
+            <a href="purchase.php?movieid=<?php echo $row['movieid']; ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i> $<?php echo $row['price'];?> </a>
+            <h1>Synopsis: </h1>
+            <p class="movie-desc"><?php echo $row['description']; ?></p>
         </div>
     </div>
 

@@ -141,17 +141,23 @@ header.sticky input[type=text]{
     animation: transitionIn 2s;
     padding: 60px;
     background: rgb(180, 23, 23);
-    position: absolute;
+    position: relative;
     width: 60%;
+    height: 55%;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: inset 0px 0px 50px rgba(0,0,0,0.9);
 }
 .now-showing{
+    display: relative;
     font-size: 30px;
     color: white;
     text-align: center;
+}
+.now-showing img{
+    height: 100%;
+    width: 100%;
 }
 .now-showing a{
     height: 400px;
@@ -167,12 +173,14 @@ header.sticky input[type=text]{
     padding-top: 15px;
     font-size: 24px;
 }
-@media (max-width: 480px){
-    #carousel{
-        height: 60%;
-        width: 88%;
+@media(max-width: 480px){
+    .header{
+        justify-content: center;
+    }
+    .logo{
+        display: none;
     }
     .banner h1{
-        font-size: 46px;
+        font-size: 36px;
     }
 }

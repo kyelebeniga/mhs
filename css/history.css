@@ -94,10 +94,14 @@ header.sticky ul ul{
 }
 
 /*-----Table-----*/
-.movie-table{
-    margin: 200px;
+.movie-display{
+    margin: 250px auto;
     text-align: center;
-    width: 80%;
+    width: 70%;
+}
+.movie-table{
+    margin-bottom: 50px;
+    width: 100%
 }
 .movie-table thead{
     font-size: 20px;

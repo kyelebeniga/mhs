@@ -159,7 +159,7 @@ img:hover{
     transform: scale(1.2);
 }
 p{
-    background-color: rgba(0, 0, 0, 0.267);
+    background-color: rgba(0, 0, 0, 0.644);
     transition: 0.2s;
 }
 img:hover ~ p{

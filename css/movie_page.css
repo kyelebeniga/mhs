@@ -109,9 +109,11 @@ header.sticky input[type=text]{
 }
 /*-----Body-----*/
 .main-container{
+    display: relative;
     width: 100%;
     height: 100vh;
     background-color: #080c1c;
+    color: white;
 }
 .banner{
     padding-top: 190px;
@@ -137,6 +139,7 @@ header.sticky input[type=text]{
     min-height: 100%;
     background-size: cover;
 }
+/*-----Movie info-----*/
 .movie-content{
     position: relative;
     padding: 0px 20px;
@@ -145,56 +148,39 @@ header.sticky input[type=text]{
     margin: 0 auto;
     margin-top: -150px;
 }
-.movie-poster img{
+.movie-content img{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 200px;
     box-shadow: 1px 2px 28px 3px rgba(0,0,0,0.37);
     -webkit-box-shadow: 1px 2px 28px 3px rgba(0,0,0,0.37);
     -moz-box-shadow: 1px 2px 28px 3px rgba(0,0,0,0.37);
 }
-.movie-text{
-    position: absolute;
-    right: 22%;
-    top: 2%;
-    height: 150px;
-    width: 500px;
-    color: white;
-}
-.movie-text p{
+.movie-content p{
     font-size: 18px;
     font-weight: 600;
+    margin-bottom: 16px;
 }
-.movie-text .btn{
-    display: block;
-    width: 30%;
+.movie-content h1{
+    padding-top: 16px;
+}
+.btn{
     cursor: pointer;
     border: none;
     border-radius: 20px;
-    margin-top: 15px;
     font-size: 16px;
-    padding:10px;
+    padding:10px 20px;
     background-color: #04AA6D;
     color: white;
     text-align: center;
     text-decoration: none;
+    transition: 0.1s;
 }
-.movie-text .btn:hover{
-    opacity: 0.9;
+.btn:hover{
+    background-color: red;
 }
-.movie-text .price{
-    position: absolute;
-    top: 63%;
-    left: 32%;
-    font-size: 26px;
-}
+
 .movie-desc{
-    position: absolute;
-    right: 12%;
-    top: 52%;
-    height: 200px;
-    width: 600px;
-    color: white;
-    text-align: justify;
- }
-.movie-desc h1{
     font-size: 26px;
-    padding-bottom: 10px;
+    font-weight: 400 !important;
 }

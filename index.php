@@ -54,7 +54,7 @@
             <div class="slick">
                 <?php while($row = mysqli_fetch_assoc($select)){ ?>
                     <div class="now-showing">
-                        <a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><img src="uploaded_img/<?php echo $row['image']; ?>" width="100%"></a>
+                        <a href="movie_page.php?movie_id=<?php echo $row['movieid']; ?>"><img src="uploaded_img/<?php echo $row['image']; ?>"></a>
                         <p><?php echo $row['title']; ?></p>
                     </div>
                 <?php }; ?>

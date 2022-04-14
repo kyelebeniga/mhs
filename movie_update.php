@@ -17,7 +17,7 @@
         $movie_banner_tmp_name = $_FILES['movie_banner']['tmp_name'];
         $movie_banner_folder = 'uploaded_img/banner/'.$movie_banner;
 
-        if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration)){
+        if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration) || empty($movie_banner)){
             $message = 'Please fill out all the blanks.';
         }
         else{
@@ -63,12 +63,12 @@
         <div class="form-update" id="myForm">
             <form action="" method="post" enctype="multipart/form-data" class="form-container">
                 <h3>Update Movie</h3>
-                <input type="text" placeholder="Movie title" name="movie_title" class="box">
-                <input type="text" placeholder="Year" name="movie_year" class="box">
-                <input type="text" placeholder="Maturity Rating" name="movie_rating" class="box">
-                <input type="text" placeholder="Description" name="movie_desc" class="box">
-                <input type="text" placeholder="Duration" name="movie_duration" class="box">
-                <input type="text" placeholder="Price" name="movie_price" class="box">
+                <input type="text" placeholder="Movie title" name="movie_title" class="box" value="<?php echo $row['title']; ?>">
+                <input type="text" placeholder="Year" name="movie_year" class="box" value="<?php echo $row['year']; ?>">
+                <input type="text" placeholder="Maturity Rating" name="movie_rating" class="box" value="<?php echo $row['rating']; ?>">
+                <input type="text" placeholder="Description" name="movie_desc" class="box" value="<?php echo $row['description']; ?>">
+                <input type="text" placeholder="Duration" name="movie_duration" class="box" value="<?php echo $row['duration']; ?>">
+                <input type="text" placeholder="Price" name="movie_price" class="box" value="<?php echo $row['price']; ?>">
 
                 <label for="image-file" class="image-label">Upload Image</label>
                 <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_image" id="image-file">

@@ -16,15 +16,17 @@
 }
 html{
     height: 100%;
-    background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%);
+    background-color: #2b4162;
+    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
 }
 textarea:focus, input:focus{
     outline: none;
 }
 .login-container{
-    animation: intro 2s;
-    border-radius: 4px;
-    background-color: rgb(255, 255, 255);
+    animation: intro 1s;
+    color: white;
+    border-radius: 20px;
+    background-color: #0f1319;
     height: 500px;
     width: 350px;
     position: absolute;
@@ -32,10 +34,14 @@ textarea:focus, input:focus{
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    box-shadow: 0px 0px 27px 12px rgba(0,0,0,0.43);
+    -webkit-box-shadow: 0px 0px 27px 12px rgba(0,0,0,0.43);
+    -moz-box-shadow: 0px 0px 27px 12px rgba(0,0,0,0.43);
 }
 h1{
     text-align: center;
-    padding-top: 50px;
+    font-size: 36px;
+    padding-top: 30px;
 }
 .login{
     text-align: center;
@@ -56,8 +62,9 @@ h1{
 .login #user, #pass{
     margin-top: 20px;
     border: none;
+    color: white;
     border-bottom: 1px solid grey;
-    background-color: none;
+    background-color: #0f1319;
 }
 .login p{
     padding-top: 12px;
@@ -65,7 +72,7 @@ h1{
 }
 .login a{
     text-decoration: none;
-    color: green;
+    color: #5b97fa;
 }
 .login a:hover{
     color: rgb(36, 36, 212);
@@ -78,7 +85,7 @@ h1{
 .btn{
     border: none;
     border-radius: 2px;
-    background-color: rgb(64, 196, 64);
+    background-color: #5b97fa;
     height: 40px;
     margin-top: 16px;
     cursor: pointer;
