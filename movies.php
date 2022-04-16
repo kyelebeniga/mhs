@@ -83,7 +83,7 @@
                     <input type="text" placeholder="Year" name="movie_year" class="box">
                     <input type="text" placeholder="Maturity Rating" name="movie_rating" class="box">
                     <input type="text" placeholder="Description" name="movie_desc" class="box">
-                    <input type="text" placeholder="Duration" name="movie_duration" class="box">
+                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" class="box">
                     <input type="text" placeholder="Price" name="movie_price" class="box">
 
                     <label for="image-file" class="image-label">Upload Poster</label>

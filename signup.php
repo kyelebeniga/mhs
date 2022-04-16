@@ -7,12 +7,18 @@
     if(isset($_POST['submit_login'])){
         $username = $_POST['user'];
         $password = $_POST['pass'];
+        $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
         if(empty($username) || empty($password)){
             $error = "Fill out all the blanks";
         }
+
+        $query = mysqli_query($conn, "SELECT * FROM registration WHERE username ='".$username."'");
+        if(mysqli_num_rows($query) > 0){
+            $error = "User already exists!";
+        }
         else{
-            $mysql = "INSERT INTO registration (username, password) VALUES ('$username', '$password')";
+            $mysql = "INSERT INTO registration (username, password) VALUES ('$username', '$hashedPass')";
             $result = mysqli_query($conn, $mysql);
             echo "<script type='text/javascript'></script>";
 
