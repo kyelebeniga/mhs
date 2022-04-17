@@ -23,12 +23,12 @@
     <header>
         <a href="#" class="logo">MHS</a>
         <ul>
-            <li><a href="#" class="current-page">Home</a></li>
+            <li><a href="#" class="link" id="current-page">Home</a></li>
             <?php
                 if((isset($_SESSION['role']) && $_SESSION['role'] == "admin")){
-                    echo "<li><a href=".'movies.php'.">Movies</a></li>";
+                    echo "<li><a href=".'movies.php'." class=".'link'.">Movies</a></li>";
                 }else{
-                    echo "<li><a href=".'tickets.php'.">Movies</a></li>";
+                    echo "<li><a href=".'tickets.php'." class=".'link'.">Movies</a></li>";
                 }
             ?>
             <li><a href="#"><?php echo $_SESSION['username']; ?></a>

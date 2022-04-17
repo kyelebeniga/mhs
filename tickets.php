@@ -18,8 +18,8 @@
     <header>
         <a href="#" class="logo">MHS</a>
         <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="#" class="current-page">Movies</a></li>
+            <li><a href="index.php" class="link">Home</a></li>
+            <li><a href="#" class="link" id="current-page">Movies</a></li>
             <li><a href="#"><?php echo $_SESSION['username']; ?></a>
                 <ul>
                     <li><a href="history.php">History</a></li>

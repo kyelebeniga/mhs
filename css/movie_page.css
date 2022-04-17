@@ -57,6 +57,7 @@ header ul li{
     list-style: none;
 }
 header ul li a{
+    padding: 0px 10px;
     position: relative;
     margin: 0 15px;
     text-decoration: none;
@@ -65,6 +66,19 @@ header ul li a{
     font-weight: 500px;
     transition: 0.6s;
     line-height: 30px;
+}
+.link:after{
+    content: "";
+    position: absolute;
+    background-color: white;
+    height: 3px;
+    width: 0%;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+.link:hover:after{
+    width: 100%;
 }
 header ul li a:hover{
     transition: 0.2s;

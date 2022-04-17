@@ -12,9 +12,10 @@
 </head>
 <body>
     <header>
+        <a href="#" class="logo">MHS</a>
         <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="tickets.php">Movies</a></li>
+            <li><a href="index.php" class="link">Home</a></li>
+            <li><a href="tickets.php" class="link">Movies</a></li>
             <li><a href="#"><?php echo $_SESSION['username']; ?></a>
                 <ul>
                     <li><a href="#">History</a></li>
