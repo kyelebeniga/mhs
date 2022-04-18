@@ -72,13 +72,16 @@ header ul li a{
     position: absolute;
     background-color: white;
     height: 3px;
-    width: 0%;
+    width: 100%;
     left: 0;
     bottom: -10px;
-    transition: 0.3s;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: 0.3s transform;
 }
 .link:hover:after{
-    width: 100%;
+    transform: scaleX(1);
+    transform-origin: left;
 }
 header ul li a:hover{
     transition: 0.2s;

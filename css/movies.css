@@ -90,13 +90,16 @@ header ul li a{
     position: absolute;
     background-color: white;
     height: 3px;
-    width: 0%;
+    width: 100%;
     left: 0;
     bottom: -10px;
-    transition: 0.3s;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: 0.3s transform;
 }
 .link:hover:after{
-    width: 100%;
+    transform: scaleX(1);
+    transform-origin: left;
 }
 #current-page{
     font-weight: 800;
@@ -179,6 +182,25 @@ header.sticky ul ul{
     width: 25%;
     transform: translate(-50%, -50%);
     border-radius: 20px;
+    z-index: 1;
+}
+.open-button::after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border-radius: 20px;
+    z-index: -1;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.1s ease-out transform;
+}
+.open-button:hover::after{
+    transform-origin: bottom;
+    transform: scaleX(1);
 }
 .form-popup{
     display: none;
@@ -222,7 +244,7 @@ header.sticky ul ul{
     margin-left: 50px;
     background-color: red;
 }
-.form-container .btn:hover, .open-button:hover{
+.form-container .btn:hover{
     opacity: 0.9;
 }
 #pageMask {
