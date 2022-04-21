@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +46,7 @@
                     var formValues= $(this).serialize();
             
                     $.post("php/signup.php", formValues, function(data){
-                    $('.btn').notify('Success!', 'success',);
+                    $('.btn').notify('Success!', {position:"bottom center",className:"success"});
                         setTimeout(function() { 
                             window.location.href = 'login.php'; 
                         }, 2000);
