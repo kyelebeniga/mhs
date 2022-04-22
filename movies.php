@@ -1,14 +1,6 @@
 <?php
     @include 'config.php';
-
     session_start();
-    
-    //Deletes movie entry
-    if(isset($_GET['delete'])){
-        $id = $_GET['delete'];
-        mysqli_query($conn, "DELETE FROM movie WHERE movieid = $id");
-        echo "<script type='text/javascript'>alert('Movie entry deleted!');</script>";
-    }
 ?>
 
 <!DOCTYPE html>
@@ -47,16 +39,16 @@
         <button class="open-button" onclick="openForm()">Add Submission</button>
         <div class="container">
             <div class="form-popup" id="myForm">
-                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data" class="form-container">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data" class="form-container" id="movieForm">
                     <h3>Add movie</h3>
-                    <input type="text" placeholder="Movie title" name="movie_title" class="box">
-                    <input type="text" placeholder="Year" name="movie_year" class="box">
-                    <input type="text" placeholder="Maturity Rating" name="movie_rating" class="box">
-                    <input type="text" placeholder="Description" name="movie_desc" class="box">
-                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" class="box">
-                    <input type="text" placeholder="Price" name="movie_price" class="box">
+                    <input type="text" placeholder="Movie title" name="movie_title" id="movie_title" class="box">
+                    <input type="text" placeholder="Year" name="movie_year" id="movie_year" class="box">
+                    <input type="text" placeholder="Maturity Rating" name="movie_rating" id="movie_rating" class="box">
+                    <input type="text" placeholder="Description" name="movie_desc" id="movie_desc" class="box">
+                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" id="movie_duration" class="box">
+                    <input type="text" placeholder="Price" name="movie_price" id="movie_price" class="box">
 
-                    <label for="image-file" class="image-label">Upload Poster</label>
+                    <label for="image-file" class="image-label" id="poster-label">Upload Poster</label>
                     <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_image" id="image-file">
                     <script>
                         //Replaces "Upload Poster" with the file name of the user's uploaded image
@@ -67,7 +59,7 @@
                         });
                     </script>
 
-                    <label for="image-banner" class="image-label">Upload Banner (1920x550)</label>
+                    <label for="image-banner" class="image-label" id="label-banner">Upload Banner (1920x550)</label>
                     <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_banner" id="image-banner">
                     <script>
                         $('#image-banner').change(function() {
@@ -110,7 +102,7 @@
                         <td>
                             <div class="buttons">
                                 <a href="movie_update.php?edit=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
-                                <a href="movies.php?delete=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-trash"></i>Delete</a>
+                                <button class="deleteBtn" id="<?php echo $row['movieid']; ?>"><i class="fas fa-trash"></i>Delete</a>
                             </div>
                         </td>
                     <tr>
@@ -121,6 +113,7 @@
     
 
     <!--JavaScript-->
+    <script src="js/deleteMovie.js"></script>
     <script src="js/insertMovie.js"></script>
     <script>
         window.addEventListener("scroll", function(){
@@ -136,6 +129,5 @@
             document.getElementById("pageMask").style.display = "none";
         }
     </script>
-
 </body>
 </html>

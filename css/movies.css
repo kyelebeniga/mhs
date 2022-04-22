@@ -210,8 +210,10 @@ header.sticky #current-page{
     display: none;
     height: 50%;
     width: 50%;
-    margin: 0 auto;
-    position: relative;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
     z-index: 9;
 }
 .form-container{
@@ -302,7 +304,9 @@ header.sticky #current-page{
     font-size: 16px !important;
     text-align: justify;
 }
-.movie-table .btn{
+.movie-table .btn,
+.movie-table .deleteBtn
+{
     display: block;
     width: 100%;
     cursor: pointer;
@@ -314,10 +318,12 @@ header.sticky #current-page{
     color: white;
     text-align: center;
 }
-.movie-table .btn:last-child{
+.movie-table .deleteBtn{
+    border: none;
     background-color: red;
 }
-.movie-table .btn:hover{
+.movie-table .btn:hover,
+.movie-table .deleteBtn:hover{
     opacity: 0.9;
 }
 #image-file, #image-banner{
