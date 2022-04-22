@@ -132,6 +132,7 @@ header input[type=text]{
     margin-right: 16px;
     font-size: 17px;
 }
+
 header.sticky{
     padding: 15px 100px;
     background: rgb(255, 255, 255);
@@ -144,6 +145,9 @@ header.sticky .logo{
 }
 header.sticky ul ul{
     background: white;
+}
+header.sticky #current-page{
+    color: black;
 }
 
 /*-----Banner-----*/

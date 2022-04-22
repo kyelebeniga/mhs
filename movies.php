@@ -2,38 +2,7 @@
     @include 'config.php';
 
     session_start();
-    if(isset($_POST['add_movie'])){
-        $movie_title = $_POST['movie_title'];
-        $movie_year = $_POST['movie_year'];
-        $movie_rating = $_POST['movie_rating'];
-        $movie_desc = $_POST['movie_desc'];
-        $movie_duration = $_POST['movie_duration'];
-        $movie_price = $_POST['movie_price'];
-        $movie_image = $_FILES['movie_image']['name'];
-        $movie_image_tmp_name = $_FILES['movie_image']['tmp_name'];
-        $movie_image_folder = 'uploaded_img/'.$movie_image;
-        $movie_banner = $_FILES['movie_banner']['name'];
-        $movie_banner_tmp_name = $_FILES['movie_banner']['tmp_name'];
-        $movie_banner_folder = 'uploaded_img/banner/'.$movie_banner;
-
-        if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration) || empty($movie_banner)){
-            $message = 'Please fill out all the blanks.';
-        }
-        else{
-            $movie_desc = str_replace("'", "\'", $movie_desc); //Sanitizes input for movie description
-            $insert = "INSERT INTO movie(title, year, rating, description, duration, price, image, banner) VALUES('$movie_title', '$movie_year', '$movie_rating', 
-                        '$movie_desc', '$movie_duration', '$movie_price', '$movie_image', '$movie_banner');";
-            $upload = mysqli_multi_query($conn, $insert);
-            if($upload){
-                move_uploaded_file($movie_image_tmp_name, $movie_image_folder);
-                move_uploaded_file($movie_banner_tmp_name, $movie_banner_folder);
-                $message = 'New movie added!';
-            }
-            else{
-                $message = 'Error: Could not add movie.';
-            }
-        }
-    };
+    
     //Deletes movie entry
     if(isset($_GET['delete'])){
         $id = $_GET['delete'];
@@ -51,6 +20,7 @@
     <link rel="stylesheet" href="css/movies.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/notify.js"></script>
 </head>
 <body>
     <?php
@@ -120,7 +90,7 @@
             $select = mysqli_query($conn, "SELECT * FROM movie")
         ?>
         <div class="movie-display">
-            <table class="movie-table">
+            <table class="movie-table" id="movie-table">
                 <thead>
                     <tr>
                         <th class="poster">Poster</th>
@@ -151,6 +121,7 @@
     
 
     <!--JavaScript-->
+    <script src="js/insertMovie.js"></script>
     <script>
         window.addEventListener("scroll", function(){
             var header = document.querySelector("header");
