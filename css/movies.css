@@ -326,10 +326,11 @@ header.sticky #current-page{
 .movie-table .deleteBtn:hover{
     opacity: 0.9;
 }
-#image-file, #image-banner{
+#image-file, #image-banner,
+#image-file2, #image-banner2{
     display: none;
 }
-.image-label{
+.image-label, .image-label2{
     color: rgb(126, 126, 126);
     width: 100%;
     display: block;
@@ -343,7 +344,7 @@ header.sticky #current-page{
  }
  /*-----Update Form-----*/
 .form-update{
-    display: block;
+    display: none;
     height: 50%;
     width: 50%;
     top: 40%;

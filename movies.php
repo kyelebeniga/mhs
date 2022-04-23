@@ -15,11 +15,6 @@
     <script src="js/notify.js"></script>
 </head>
 <body>
-    <?php
-        if(isset($message)){
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-    ?>
     <header>
         <a href="#" class="logo">MHS</a>
         <ul>
@@ -73,6 +68,43 @@
                 </form>
             </div>
         </div>
+        <!-- Update Form -->
+        <div class="container">
+            <div class="form-update" id="updateForm">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" id="formUpdate" method="post" enctype="multipart/form-data" class="form-container">
+                    <h3>Update Movie</h3>
+                    <input type="text" placeholder="Movie title" name="movie_title" id="movie_title" class="box">
+                    <input type="text" placeholder="Year" name="movie_year" id="movie_year" class="box">
+                    <input type="text" placeholder="Maturity Rating" name="movie_rating" id="movie_rating" class="box">
+                    <input type="text" placeholder="Description" name="movie_desc" id="movie_desc" class="box">
+                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" id="movie_duration" class="box">
+                    <input type="text" placeholder="Price" name="movie_price" id="movie_price" class="box">
+
+                    <label for="image-file2" class="image-label2" id="poster-label2">Upload Poster</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_image2" id="image-file2">
+                    <script>
+                        //Replaces "Upload Poster" with the file name of the user's uploaded image
+                        $('#image-file2').change(function() {
+                            var i = $(this).prev('label').clone();
+                            var file = $('#image-file2')[0].files[0].name;
+                            $(this).prev('label').text(file);
+                        });
+                    </script>
+
+                    <label for="image-banner2" class="image-label2" id="label-banner2">Upload Banner (1920x550)</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_banner2" id="image-banner2">
+                    <script>
+                        $('#image-banner2').change(function() {
+                            var i = $(this).prev('label').clone();
+                            var file = $('#image-banner2')[0].files[0].name;
+                            $(this).prev('label').text(file);
+                        });
+                    </script>
+
+                    <input type="submit" class="btn" id="submitUpdate" value="Update">
+                    <input type="button" class="btn-cancel" onclick="closeUpdateForm()" value="Cancel">
+                </form>
+            </div>
         <div id="pageMask"></div>
     </section>
 
@@ -101,7 +133,7 @@
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
                             <div class="buttons">
-                                <a href="movie_update.php?edit=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
+                                <a href="#" role="update" data-id="<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
                                 <button class="deleteBtn" id="<?php echo $row['movieid']; ?>"><i class="fas fa-trash"></i>Delete</a>
                             </div>
                         </td>
@@ -113,6 +145,7 @@
     
 
     <!--JavaScript-->
+    <script src="js/updateMovie.js"></script>
     <script src="js/deleteMovie.js"></script>
     <script src="js/insertMovie.js"></script>
     <script>
@@ -120,6 +153,14 @@
             var header = document.querySelector("header");
             header.classList.toggle("sticky", window.scrollY > 0);
         })
+        function updateForm(){
+            document.getElementById("updateForm").style.display = "block";
+            document.getElementById("pageMask").style.display = "block";
+        }
+        function closeUpdateForm(){
+            document.getElementById("updateForm").style.display = "none";
+            document.getElementById("pageMask").style.display = "none";
+        }
         function openForm(){
             document.getElementById("myForm").style.display = "block";
             document.getElementById("pageMask").style.display = "block";
