@@ -73,12 +73,12 @@
             <div class="form-update" id="updateForm">
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" id="formUpdate" method="post" enctype="multipart/form-data" class="form-container">
                     <h3>Update Movie</h3>
-                    <input type="text" placeholder="Movie title" name="movie_title" id="movie_title" class="box">
-                    <input type="text" placeholder="Year" name="movie_year" id="movie_year" class="box">
-                    <input type="text" placeholder="Maturity Rating" name="movie_rating" id="movie_rating" class="box">
-                    <input type="text" placeholder="Description" name="movie_desc" id="movie_desc" class="box">
-                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" id="movie_duration" class="box">
-                    <input type="text" placeholder="Price" name="movie_price" id="movie_price" class="box">
+                    <input type="text" placeholder="Movie title" name="movie_title" id="movie_title2" class="box">
+                    <input type="text" placeholder="Year" name="movie_year" id="movie_year2" class="box">
+                    <input type="text" placeholder="Maturity Rating" name="movie_rating" id="movie_rating2" class="box">
+                    <input type="text" placeholder="Description" name="movie_desc" id="movie_desc2" class="box">
+                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" id="movie_duration2" class="box">
+                    <input type="text" placeholder="Price" name="movie_price" id="movie_price2" class="box">
 
                     <label for="image-file2" class="image-label2" id="poster-label2">Upload Poster</label>
                     <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_image2" id="image-file2">
