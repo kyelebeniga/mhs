@@ -7,22 +7,25 @@ $(document).ready(function(){
         var lastName = $("#last_name").val();
         var seat = $("#seats").val();
         if(firstName == ''){
-            $('#first_name').notify('Field is empty.',{
-                    position: 'bottom'
-                }
-            );
+            $('#first_name').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(lastName == ''){
-            $('#last_name').notify('Field is empty.',{
-                    position: 'bottom'
-                }
-            );
+            $('#last_name').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(seat == ''){
-            $('#seats').notify('Field is empty.',{
-                    position: 'bottom'
-                }
-            );
+            $('#seats').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else{
             $.ajax({

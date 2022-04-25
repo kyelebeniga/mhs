@@ -19,52 +19,60 @@ $(document).ready(function(){
             fd.append('id', id);
 
             if(title == ''){
-                $('#movie_title2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#movie_title2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else if(year == ''){
-                $('#movie_year2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#movie_year2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else if(rating == ''){
-                $('#movie_rating2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#movie_rating2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else if(desc == ''){
-                $('#movie_desc2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#movie_desc2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else if(duration == ''){
-                $('#movie_duration2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#movie_duration2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else if(price == ''){
-                $('#movie_price2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#movie_price2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else if(poster == ''){
-                $('#poster-label2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#poster-label2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else if(banner == ''){
-                $('#label-banner2').notify('Field is empty.',{
-                        position: 'right'
-                    }
-                );
+                $('#label-banner2').css({
+                    "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                    "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                });
             }
             else{
                 $.ajax({

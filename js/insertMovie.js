@@ -12,52 +12,60 @@ $(document).ready(function(){
         var banner = $('#image-banner').val();
 
         if(title == ''){
-            $('#movie_title').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#movie_title').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(year == ''){
-            $('#movie_year').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#movie_year').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(rating == ''){
-            $('#movie_rating').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#movie_rating').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(desc == ''){
-            $('#movie_desc').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#movie_desc').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(duration == ''){
-            $('#movie_duration').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#movie_duration').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(price == ''){
-            $('#movie_price').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#movie_price').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(poster == ''){
-            $('#poster-label').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#poster-label').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else if(banner == ''){
-            $('#label-banner').notify('Field is empty.',{
-                    position: 'right'
-                }
-            );
+            $('#label-banner').css({
+                "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+            });
         }
         else{ 
             $.ajax({

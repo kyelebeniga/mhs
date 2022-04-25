@@ -33,20 +33,24 @@
                 var password = $('#pass').val();
                 
                 if(username == ''){
-                    $('.user').notify('Empty username.',
-                        {position: 'right'}
-                    );
+                    $('.user').css({
+                        "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                    });
                 }
                 else if(password == ''){
-                    $('.pass').notify('Empty password.',
-                        {position: 'right'}
-                    );
+                    $('.pass').css({
+                        "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                    });
                 }
                 else{
                     var formValues= $(this).serialize();
             
                     $.post("php/signup.php", formValues, function(data){
-                    $('.btn').notify('Success!', {position:"bottom center",className:"success"});
+                    $.notify('Success!', {position:"top center",className:"success"});
                         setTimeout(function() { 
                             window.location.href = 'login.php'; 
                         }, 2000);
