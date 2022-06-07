@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $conn = mysqli_connect('localhost', 'root', '', 'mhs_db');
+    $conn = mysqli_connect('localhost', 'root', '', 'mhs_og_db');
 
     $id = $_POST['id'];
 
