@@ -1,33 +1,5 @@
 <?php
-    @include 'config.php';   
-
     session_start();
-
-// If user already logged in, send them to home page
-    if ( ! empty( $_SESSION['user'] ) ) {
-        header('Location:index.php?');
-        exit;
-    }
-
-    $error = "";
-    if(isset($_POST['submit_login'])){
-        $username = $_POST['user'];
-        $password = $_POST['pass'];
-
-        $mysql = "SELECT * FROM registration WHERE username='".$username."'";
-        $result = mysqli_query($conn, $mysql);
-        $row = mysqli_fetch_array($result);
-        $verify = password_verify($password, $row['password']);
-       
-        if($verify==1){
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['role'] = $row['role'];
-            header('location:index.php');
-        }
-        else{
-            $error = "Invalid credentials.";
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -37,19 +9,62 @@
     <meta charset="UTF-8">
     <title>MHS | Login</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/notify.js"></script>
 </head>
 <body>
     <section class="main">
         <div class="login-container">
             <h1>Login</h1>
             <form method="post" class="login">
-                <input type="text" id="user" name="user" placeholder="Username">
-                <input type="password" id="pass" name="pass" placeholder="Password">
-                <div><span class="error"><?php echo $error; ?></span></div>
+                <input type="text" id="user" name="user" class="user" placeholder="Username">
+                <input type="password" id="pass" name="pass" class="pass" placeholder="Password">
                 <input type="submit" class="btn" name="submit_login" value="Login">
                 <p>Not a member? <a href="signup.php">Signup now</a></p>
             </form>
         </div>
-    </section>  
+        <p id="response"></p>
+    </section> 
+    <script>
+        $(document).ready(function(){
+            $("form").on("submit", function(e){
+                e.preventDefault();
+
+                var username = $('#user').val();
+                var password = $('#pass').val();
+                
+                if(username == ''){
+                    $('.user').css({
+                        "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                    });
+                }
+                else if(password == ''){
+                    $('.pass').css({
+                        "box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-webkit-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)",
+                        "-moz-box-shadow": "0px 0px 10px 2px rgba(255,72,72,0.75)"
+                    });
+                }
+                else{
+                    $.ajax({
+                        url: 'php/login.php',
+                        method: 'POST',
+                        data: $(this).serialize(),
+                        success: function(response){
+                            if(response=="success"){
+                                window.location = 'index.php';
+                            }
+                            else{
+                                $('.btn').notify("Invalid credentials.", {position: 'bottom center'});
+                            }
+                        },
+                        dataType: 'text'
+                    });
+                }
+            })
+        })
+    </script>
 </body>
 </html>

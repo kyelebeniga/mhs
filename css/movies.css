@@ -132,6 +132,7 @@ header input[type=text]{
     margin-right: 16px;
     font-size: 17px;
 }
+
 header.sticky{
     padding: 15px 100px;
     background: rgb(255, 255, 255);
@@ -144,6 +145,9 @@ header.sticky .logo{
 }
 header.sticky ul ul{
     background: white;
+}
+header.sticky #current-page{
+    color: black;
 }
 
 /*-----Banner-----*/
@@ -206,8 +210,10 @@ header.sticky ul ul{
     display: none;
     height: 50%;
     width: 50%;
-    margin: 0 auto;
-    position: relative;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
     z-index: 9;
 }
 .form-container{
@@ -298,7 +304,9 @@ header.sticky ul ul{
     font-size: 16px !important;
     text-align: justify;
 }
-.movie-table .btn{
+.movie-table .btn,
+.movie-table .deleteBtn
+{
     display: block;
     width: 100%;
     cursor: pointer;
@@ -310,16 +318,19 @@ header.sticky ul ul{
     color: white;
     text-align: center;
 }
-.movie-table .btn:last-child{
+.movie-table .deleteBtn{
+    border: none;
     background-color: red;
 }
-.movie-table .btn:hover{
+.movie-table .btn:hover,
+.movie-table .deleteBtn:hover{
     opacity: 0.9;
 }
-#image-file, #image-banner{
+#image-file, #image-banner,
+#image-file2, #image-banner2{
     display: none;
 }
-.image-label{
+.image-label, .image-label2{
     color: rgb(126, 126, 126);
     width: 100%;
     display: block;
@@ -333,7 +344,7 @@ header.sticky ul ul{
  }
  /*-----Update Form-----*/
 .form-update{
-    display: block;
+    display: none;
     height: 50%;
     width: 50%;
     top: 40%;

@@ -1,45 +1,6 @@
 <?php
     @include 'config.php';
-
     session_start();
-    if(isset($_POST['add_movie'])){
-        $movie_title = $_POST['movie_title'];
-        $movie_year = $_POST['movie_year'];
-        $movie_rating = $_POST['movie_rating'];
-        $movie_desc = $_POST['movie_desc'];
-        $movie_duration = $_POST['movie_duration'];
-        $movie_price = $_POST['movie_price'];
-        $movie_image = $_FILES['movie_image']['name'];
-        $movie_image_tmp_name = $_FILES['movie_image']['tmp_name'];
-        $movie_image_folder = 'uploaded_img/'.$movie_image;
-        $movie_banner = $_FILES['movie_banner']['name'];
-        $movie_banner_tmp_name = $_FILES['movie_banner']['tmp_name'];
-        $movie_banner_folder = 'uploaded_img/banner/'.$movie_banner;
-
-        if(empty($movie_title) || empty($movie_desc) || empty($movie_image) || empty($movie_year) || empty($movie_rating) || empty($movie_duration) || empty($movie_banner)){
-            $message = 'Please fill out all the blanks.';
-        }
-        else{
-            $movie_desc = str_replace("'", "\'", $movie_desc); //Sanitizes input for movie description
-            $insert = "INSERT INTO movie(title, year, rating, description, duration, price, image, banner) VALUES('$movie_title', '$movie_year', '$movie_rating', 
-                        '$movie_desc', '$movie_duration', '$movie_price', '$movie_image', '$movie_banner');";
-            $upload = mysqli_multi_query($conn, $insert);
-            if($upload){
-                move_uploaded_file($movie_image_tmp_name, $movie_image_folder);
-                move_uploaded_file($movie_banner_tmp_name, $movie_banner_folder);
-                $message = 'New movie added!';
-            }
-            else{
-                $message = 'Error: Could not add movie.';
-            }
-        }
-    };
-    //Deletes movie entry
-    if(isset($_GET['delete'])){
-        $id = $_GET['delete'];
-        mysqli_query($conn, "DELETE FROM movie WHERE movieid = $id");
-        echo "<script type='text/javascript'>alert('Movie entry deleted!');</script>";
-    }
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +12,9 @@
     <link rel="stylesheet" href="css/movies.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/notify.js"></script>
 </head>
 <body>
-    <?php
-        if(isset($message)){
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-    ?>
     <header>
         <a href="#" class="logo">MHS</a>
         <ul>
@@ -77,16 +34,16 @@
         <button class="open-button" onclick="openForm()">Add Submission</button>
         <div class="container">
             <div class="form-popup" id="myForm">
-                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data" class="form-container">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data" class="form-container" id="movieForm">
                     <h3>Add movie</h3>
-                    <input type="text" placeholder="Movie title" name="movie_title" class="box">
-                    <input type="text" placeholder="Year" name="movie_year" class="box">
-                    <input type="text" placeholder="Maturity Rating" name="movie_rating" class="box">
-                    <input type="text" placeholder="Description" name="movie_desc" class="box">
-                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" class="box">
-                    <input type="text" placeholder="Price" name="movie_price" class="box">
+                    <input type="text" placeholder="Movie title" name="movie_title" id="movie_title" class="box">
+                    <input type="text" placeholder="Year" name="movie_year" id="movie_year" class="box">
+                    <input type="text" placeholder="Maturity Rating" name="movie_rating" id="movie_rating" class="box">
+                    <input type="text" placeholder="Description" name="movie_desc" id="movie_desc" class="box">
+                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" id="movie_duration" class="box">
+                    <input type="text" placeholder="Price" name="movie_price" id="movie_price" class="box">
 
-                    <label for="image-file" class="image-label">Upload Poster</label>
+                    <label for="image-file" class="image-label" id="poster-label">Upload Poster</label>
                     <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_image" id="image-file">
                     <script>
                         //Replaces "Upload Poster" with the file name of the user's uploaded image
@@ -97,7 +54,7 @@
                         });
                     </script>
 
-                    <label for="image-banner" class="image-label">Upload Banner (1920x550)</label>
+                    <label for="image-banner" class="image-label" id="label-banner">Upload Banner (1920x550)</label>
                     <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_banner" id="image-banner">
                     <script>
                         $('#image-banner').change(function() {
@@ -111,6 +68,43 @@
                 </form>
             </div>
         </div>
+        <!-- Update Form -->
+        <div class="container">
+            <div class="form-update" id="updateForm">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" id="formUpdate" method="post" enctype="multipart/form-data" class="form-container">
+                    <h3>Update Movie</h3>
+                    <input type="text" placeholder="Movie title" name="movie_title" id="movie_title2" class="box">
+                    <input type="text" placeholder="Year" name="movie_year" id="movie_year2" class="box">
+                    <input type="text" placeholder="Maturity Rating" name="movie_rating" id="movie_rating2" class="box">
+                    <input type="text" placeholder="Description" name="movie_desc" id="movie_desc2" class="box">
+                    <input type="text" placeholder="Duration (Ex. 1h 20m)" name="movie_duration" id="movie_duration2" class="box">
+                    <input type="text" placeholder="Price" name="movie_price" id="movie_price2" class="box">
+
+                    <label for="image-file2" class="image-label2" id="poster-label2">Upload Poster</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_image2" id="image-file2">
+                    <script>
+                        //Replaces "Upload Poster" with the file name of the user's uploaded image
+                        $('#image-file2').change(function() {
+                            var i = $(this).prev('label').clone();
+                            var file = $('#image-file2')[0].files[0].name;
+                            $(this).prev('label').text(file);
+                        });
+                    </script>
+
+                    <label for="image-banner2" class="image-label2" id="label-banner2">Upload Banner (1920x550)</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="movie_banner2" id="image-banner2">
+                    <script>
+                        $('#image-banner2').change(function() {
+                            var i = $(this).prev('label').clone();
+                            var file = $('#image-banner2')[0].files[0].name;
+                            $(this).prev('label').text(file);
+                        });
+                    </script>
+
+                    <input type="submit" class="btn" id="submitUpdate" value="Update">
+                    <input type="button" class="btn-cancel" onclick="closeUpdateForm()" value="Cancel">
+                </form>
+            </div>
         <div id="pageMask"></div>
     </section>
 
@@ -120,7 +114,7 @@
             $select = mysqli_query($conn, "SELECT * FROM movie")
         ?>
         <div class="movie-display">
-            <table class="movie-table">
+            <table class="movie-table" id="movie-table">
                 <thead>
                     <tr>
                         <th class="poster">Poster</th>
@@ -139,8 +133,8 @@
                         <td class="table-desc-content"><?php echo $row['description']; ?></td>
                         <td>
                             <div class="buttons">
-                                <a href="movie_update.php?edit=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
-                                <a href="movies.php?delete=<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-trash"></i>Delete</a>
+                                <a href="#" role="update" data-id="<?php echo $row['movieid']; ?>" class="btn"><i class="fas fa-edit"></i>Edit</a>
+                                <button class="deleteBtn" id="<?php echo $row['movieid']; ?>"><i class="fas fa-trash"></i>Delete</a>
                             </div>
                         </td>
                     <tr>
@@ -151,11 +145,22 @@
     
 
     <!--JavaScript-->
+    <script src="js/updateMovie.js"></script>
+    <script src="js/deleteMovie.js"></script>
+    <script src="js/insertMovie.js"></script>
     <script>
         window.addEventListener("scroll", function(){
             var header = document.querySelector("header");
             header.classList.toggle("sticky", window.scrollY > 0);
         })
+        function updateForm(){
+            document.getElementById("updateForm").style.display = "block";
+            document.getElementById("pageMask").style.display = "block";
+        }
+        function closeUpdateForm(){
+            document.getElementById("updateForm").style.display = "none";
+            document.getElementById("pageMask").style.display = "none";
+        }
         function openForm(){
             document.getElementById("myForm").style.display = "block";
             document.getElementById("pageMask").style.display = "block";
@@ -165,6 +170,5 @@
             document.getElementById("pageMask").style.display = "none";
         }
     </script>
-
 </body>
 </html>
