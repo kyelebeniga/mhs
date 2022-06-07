@@ -76,7 +76,7 @@ $(document).ready(function(){
             }
             else{
                 $.ajax({
-                    url: "php/updateMovie.php",
+                    url: "updateMovie.php",
                     type: "POST",
                     data: fd,
                     contentType: false,

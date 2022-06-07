@@ -69,7 +69,7 @@ $(document).ready(function(){
         }
         else{ 
             $.ajax({
-                url: "php/insertMovie.php",
+                url: "insertMovie.php",
                 type: "POST",
                 data: new FormData(this),
                 contentType: false,
